@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const statesInNigeria = [
-  "Abia", "Adamawa", "Akwa Ibom", "Anambra", "Bauchi", "Bayelsa", "Benue", "Borno",
+  "Abia", "Abuja", "Adamawa", "Akwa Ibom", "Anambra", "Bauchi", "Bayelsa", "Benue", "Borno",
   "Cross River", "Delta", "Ebonyi", "Edo", "Ekiti", "Enugu", "Gombe", "Imo", "Jigawa",
   "Kaduna", "Kano", "Katsina", "Kebbi", "Kogi", "Kwara", "Lagos", "Nasarawa", "Niger",
-  "Ogun", "Ondo", "Osun", "Oyo", "Plateau", "Rivers", "Sokoto", "Taraba", "Yobe", "Zamfara", "FCT"
+  "Ogun", "Ondo", "Osun", "Oyo", "Plateau", "Rivers", "Sokoto", "Taraba", "Yobe", "Zamfara",
 ];
 
 const SearchFilterBar = () => {
@@ -15,15 +15,16 @@ const SearchFilterBar = () => {
 
   const handleSearch = async (e) => {
     e.preventDefault();
+    console.log('fetch')
 
-    if (!selectedState || !stayType) {
+    if (!selectedState) {
       alert('Please fill in both fields');
       return;
     }
 
     try {
       const response = await fetch(
-        `https://api.example.com/accommodations?state=${selectedState}&type=${stayType}`
+        `https://api.makcorps.com/mapping?api_key=67eeff2b74d5e6f67ee80370&name=${selectedState}`
       );
       const data = await response.json();
       navigate('/search-results', { state: { results: data } });
